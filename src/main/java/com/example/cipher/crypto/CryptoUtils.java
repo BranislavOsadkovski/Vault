@@ -1,7 +1,6 @@
 package com.example.cipher.crypto;
 
 import javax.crypto.*;
-import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -25,12 +24,8 @@ public class CryptoUtils {
      */
     public static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";
 
-    public static Cipher getCipher(String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException {
-        return Cipher.getInstance(algorithm);
-    }
-
     public static byte[] encrypt(byte[] contentToEncrypt, SecretKey secretKey, AlgorithmParameterSpec algorithmParameterSpec) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
-        Cipher cipher = getCipher(AES_GCM_NO_PADDING);
+        Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, algorithmParameterSpec);
         try {
             byte[] encryptedBytes = cipher.doFinal(contentToEncrypt);
@@ -41,11 +36,10 @@ public class CryptoUtils {
         return null;
     }
 
-
     public static byte[] encrypt(byte[] msg, PrivateKey key)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException,
             BadPaddingException, InvalidKeyException {
-        Cipher cipher = getCipher(RSA);
+        Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, key);
         return cipher.doFinal(msg);
     }

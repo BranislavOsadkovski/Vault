@@ -13,11 +13,11 @@ public class CipherApplication {
     public static void main(String[] args) {
         SpringApplication.run(CipherApplication.class, args);
 
-//        Ciphers.runDummySecretKey();
+        Ciphers.runDummySecretKey();
 
-//        Ciphers.runAsymmetricCryptography();
+        Ciphers.runAsymmetricCryptography();
 
-//        Ciphers.runSymmetricCryptography();
+        Ciphers.runSymmetricCryptography();
 
         Ciphers.runTest();
     }
