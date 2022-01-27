@@ -58,7 +58,7 @@ public class Ciphers {
                 printToConsole(encryptedSecretKey);//logging to console
 
 
-                Cipher cipher = CryptoUtils.getCipher(CryptoUtils.RSA);
+                Cipher cipher = Cipher.getInstance(CryptoUtils.RSA);
                 cipher.init(Cipher.DECRYPT_MODE, KeyUtils.getPublic(PATH + "/src/main/resources/keypair/publickey"));
                 SecretKeySpec decryptedSecretKey = new SecretKeySpec(cipher.doFinal(encryptedSecretKey), KeyUtils.SECRET_KEY_ALGORITHM);
                 log.info("DECRYPTED SecretKey");
@@ -126,8 +126,13 @@ public class Ciphers {
         File file = new File(PATH + "/src/main/resources/data/dummy.xml");
 
         SecretKey key;
+
+        Cipher cipher;
+
         try {
             key = KeyUtils.generateSecretKey();
+            cipher = Cipher.getInstance(CryptoUtils.AES_GCM_NO_PADDING);
+            cipher.init(Cipher.ENCRYPT_MODE, key, KeyUtils.getGCMParameterSpec());
 
             FileInputStream fileInputStream = new FileInputStream(file);
             byte[] fileBytes = fileInputStream.readAllBytes();
@@ -137,7 +142,7 @@ public class Ciphers {
 
             try (FileOutputStream fileOutputStream =
                          new FileOutputStream(PATH + "/src/main/resources/encrypted-data/cipherStream-5-" + file.getName());
-                 CipherOutputStream cipherOutputStream = new CipherOutputStream(fileOutputStream, CryptoUtils.getCipher(key, KeyUtils.getGCMParameterSpec()))) {
+                 CipherOutputStream cipherOutputStream = new CipherOutputStream(fileOutputStream, cipher)) {
                 cipherOutputStream.write(encryptedBytes);
 
             } catch (Exception e) {
