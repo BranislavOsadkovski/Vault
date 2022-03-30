@@ -36,7 +36,7 @@ public class KeyUtils {
      * Disposable 256
      * A key is randomly generated to ensure the security
      *
-     * AES key derived from a password (MEK)
+     * AES key derived from a password or a Master encryption key
      */
     public static SecretKey generateSecretKey() throws InvalidKeySpecException, NoSuchAlgorithmException {
         byte[] SALT = getRandomNonceCBC();
