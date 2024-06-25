@@ -9,7 +9,7 @@ Control Block is a data structure that holds the encrypted data, the encrypted m
 Control blocks are translated to XML form and attached a generated hash to bind the next block to the previous one and so creating a blockchain type structure in a XML document form.
 After that the XML document containing the blockchain structure is signed with XML signature. Ensuring the validity and integrity of the input data.
 
-All of the steps in the process are reversable.
+All of the steps in the process are reversable, with validation of XML signature and document.
 
 # Java-Cryptography
 Cryptography is the art and science of making a cryptosystem that is capable of providing information security.
