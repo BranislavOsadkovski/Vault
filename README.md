@@ -4,10 +4,10 @@ Vault API compresses the input data bytes after that it creates a unique Master 
 
 Next step is using RSA keys for assymetric encryption of the Master key which is also stored in a Control block.
 
-Control Block is a data structure that holds the encrypted data, the encrpted master key and time and date of creation. 
+Control Block is a data structure that holds the encrypted data, the encrypted master key with time and date of its creation. 
 
 Control blocks are translated to XML form and attached a generated hash to bind the next block to the previous one and so creating a blockchain type structure in a XML document form.
-After that the XML document is signed with XML signature and ensured its validity.
+After that the XML document containing the blockchain structure is signed with XML signature. Ensuring the validity and integrity of the input data.
 
 All of the steps in the process are reversable.
 
